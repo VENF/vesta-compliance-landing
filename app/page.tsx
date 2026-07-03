@@ -1,19 +1,37 @@
-import { Button } from "@/components/ui/button"
+import { LandingNav } from "@/src/sections/landing/components/landing-nav"
+import { LandingHero } from "@/src/sections/landing/components/landing-hero"
+import { MetricsSection } from "@/src/sections/landing/components/metrics-section"
+import { ProblemSection } from "@/src/sections/landing/components/problem-section"
+import { SolutionSection } from "@/src/sections/landing/components/solution-section"
+import { HowItWorksSection } from "@/src/sections/landing/components/how-it-works-section"
+import { CtaSection } from "@/src/sections/landing/components/cta-section"
+import { FooterSection } from "@/src/sections/landing/components/footer-section"
+import { StripedPattern } from "@/components/striped-pattern"
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
+    <>
+      <LandingNav />
+      <main className="flex flex-col items-center justify-center pt-16">
+        <div className="relative w-full px-4 md:w-[80%] md:px-10">
+          <div className="pointer-events-none absolute inset-0 z-0 flex flex-col">
+            <div className="flex-1" />
+            <StripedPattern
+              direction="right"
+              className="text-[#DBDBDB] dark:text-[#2E2E2E]"
+            />
+          </div>
+          <div className="relative border-red-500 bg-background">
+            <LandingHero />
+            <MetricsSection />
+            <ProblemSection />
+            <SolutionSection />
+            <HowItWorksSection />
+            <CtaSection />
+            <FooterSection />
+          </div>
         </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+      </main>
+    </>
   )
 }

@@ -64,6 +64,17 @@ This skill documents the conventions and best practices for the Vesta project. F
 - Always put `className` as the last prop that accepts dynamic classes
 - Component signature: `function Foo({ className, ...props }: ComponentProps)`
 
+## UI Animations
+
+### transitions-dev Conventions
+- Every UI transition (dropdowns, modals, tooltips, accordions, tabs, skeletons, number pop-ins, text swaps, icon swaps, plus-to-menu morph, etc.) MUST follow the conventions from `transitions-dev`
+- Use `transitions-dev` add/apply/review/refine when implementing new transitions
+- Easing curve: `cubic-bezier(0.175, 0.885, 0.32, 1.1)` as specified in the Geist design system
+- Timing: 150ms for state changes, 200ms for popovers/tooltips, 300ms for modals/overlays
+- Use `0ms` duration when motion doesn't clarify the interaction (most interactions should feel instant)
+- Always honor `prefers-reduced-motion` — drop non-essential motion
+- Avoid looping or decorative animations; motion must serve a purpose
+
 ## Performance
 
 ### Code Splitting
@@ -78,24 +89,69 @@ This skill documents the conventions and best practices for the Vesta project. F
 ### Fonts
 - Use `next/font` for all custom fonts; fonts are already configured in `app/layout.tsx` (Geist Sans, Geist Mono)
 
-## File Structure
+## Architecture
 
-### Feature-based Grouping
-- Group files by feature, not by type:
-  ```
-  app/dashboard/
-    page.tsx
-    dashboard-chart.tsx
-    dashboard-table.tsx
-  ```
-- NOT:
-  ```
-  components/dashboard-page.tsx
-  components/dashboard-chart.tsx
-  ```
-- Shared UI components go in `components/ui/`
-- Shared hooks go in `hooks/`
-- Shared utilities go in `lib/`
+### Horizontal Layers (Hexagonal / Ports & Adapters)
+The project follows hexagonal architecture to separate business logic from infrastructure. Dependencies point inward — outer layers depend on inner layers through interfaces.
+
+Each context (feature) is organized in three layers:
+
+```
+context-name/
+├── domain/          # Entities, types, interfaces, validation logic
+│   └── entity.repository.ts   # Port interface (pure abstraction)
+├── application/     # Use cases (orchestration) + UI components
+│   ├── GetEntityById.ts       # Use case (calls repository port)
+│   └── EntityCard.tsx         # View component (framework-aware)
+└── infrastructure/  # Implementations of ports (API, storage, etc.)
+    └── EntityRepository.ts    # Adapter (axios, fetch, localStorage)
+```
+
+#### Domain (inner layer — knows nothing outside itself)
+- Entities, value objects, types/interfaces
+- Repository interfaces (ports) defining contracts
+- Validation functions, business rules
+- Zero dependencies on frameworks, APIs, or UI
+
+#### Application (middle layer)
+- Use cases: orchestrate domain logic, call repository ports
+- Framework-aware components (React/Next): views, pages, controllers
+- Depends only on domain layer through interfaces
+
+#### Infrastructure (outer layer)
+- Concrete implementations of repository interfaces (adapters)
+- API calls (axios), localStorage, external services
+- Implements contracts defined in domain
+
+### Vertical Slicing (by context/feature)
+Each feature/context is a self-contained vertical slice crossing all three layers:
+
+```
+app/dashboard/
+├── domain/
+│   ├── dashboard.entity.ts
+│   └── dashboard.repository.ts
+├── application/
+│   ├── GetDashboardStats.ts
+│   ├── DashboardPage.tsx
+│   └── DashboardChart.tsx
+└── infrastructure/
+    └── DashboardRepository.ts
+```
+
+Each context is isolated: you can add, replace, or remove entire contexts without affecting others.
+
+### Shared Code
+- Extract to `lib/shared/` only when the same pattern appears 3+ times across contexts
+- `components/ui/` — shared shadcn components
+- `hooks/` — shared React hooks
+- `lib/` — shared utilities (api client, formatters, constants)
+
+### Dependency Inversion
+- Domain defines interfaces (ports): `IEntityRepository`
+- Infrastructure implements them: `class ApiEntityRepository implements IEntityRepository`
+- Application receives dependencies through their interfaces, never concrete implementations
+- Makes the core testable: swap real adapters for mocks in tests
 
 ### Naming
 - Files: `kebab-case.tsx` for components, `kebab-case.ts` for utilities
