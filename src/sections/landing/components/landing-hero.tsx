@@ -45,7 +45,7 @@ export function LandingHero() {
             ease: "easeOut",
             y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
           }}
-          className="relative z-1 mr-4 aspect-[600/390] w-full max-w-[600px] bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1-light.png')] bg-contain bg-center bg-no-repeat dark:mr-8 dark:bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1%20(1).png')]"
+          className="relative z-1 mr-4 aspect-[600/390] w-full max-w-[400px] bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1-light.png')] bg-contain bg-center bg-no-repeat dark:mr-8 dark:bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1%20(1).png')]"
         />
       </div>
     </section>
