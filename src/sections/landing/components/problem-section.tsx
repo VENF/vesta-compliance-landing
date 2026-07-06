@@ -29,6 +29,7 @@ const PAIN_POINTS = [
     bullets: [
       "Reformas parciales y decretos de exoneración temporales que modifican aranceles constantemente.",
       "Herramientas estáticas que aíslan la información legal, provocando que te enteres de los cambios cuando ya es tarde.",
+      "Incoterms mal aplicados: el término de compra distorsiona la base imponible y genera pagos en exceso o riesgos de subvaluación.",
     ],
     icon: <EyeOff className="my-4" />,
   },
@@ -44,10 +45,7 @@ const PAIN_POINTS = [
 ]
 export function ProblemSection() {
   return (
-    <section
-      id="problema"
-      className="relative overflow-hidden border-x-2 border-b-2 border-dashed border-[#DAD9DE] py-12 md:py-24 dark:border-muted"
-    >
+    <section id="problema" className="relative overflow-hidden py-12 md:py-24">
       <div className="max-w-7xl px-4 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,10 +57,11 @@ export function ProblemSection() {
           <h2 className="mb-6 text-3xl leading-none font-bold md:text-[48px]">
             El costo de la incertidumbre regulatoria en el comercio exterior.
           </h2>
-          <p className="text-copy-16 text-muted-foreground">
-            Los sistemas de consulta tradicionales y el análisis manual exponen
-            a las empresas a contingencias financieras críticas debido a la
-            volatilidad del entorno normativo actual
+          <p className="text-sm text-muted-foreground md:text-copy-16">
+            Cada fracción arancelaria que eliges —o que eliges mal— define el
+            futuro financiero de tu operación. Sobrecostos fiscales, multas,
+            decomisos y litigios nacen de una decisión que hoy depende de hojas
+            de cálculo, criterio disperso y memorandos sin actualizar
           </p>
         </motion.div>
 

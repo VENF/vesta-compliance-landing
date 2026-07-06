@@ -14,7 +14,7 @@ interface ClassificationResultSectionProps {
   className?: string
 }
 
-const dashClass = "border-t border-dashed border-[#DAD9DE]/50 dark:border-card"
+const dashClass = "border-t border-dashed border-[#DAD9DE]/50 dark:border-muted"
 
 export function ClassificationResultSection({
   data,

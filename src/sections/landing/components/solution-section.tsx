@@ -41,6 +41,12 @@ const COMPARISONS = [
     after:
       "Tiempo total: Menos de 5 minutos por dictamen agéntico automatizado.",
   },
+  {
+    before:
+      "Incoterms ignorados: el costo real de importación es una caja negra hasta que llega la factura del agente.",
+    after:
+      "Simulación de landed cost por Incoterm: el impacto fiscal se proyecta antes de embarcar.",
+  },
 ]
 export function SolutionSection() {
   return (
@@ -79,13 +85,11 @@ export function SolutionSection() {
               transition={{ duration: 0.5 }}
             >
               <p className="max-w-2xl text-copy-16 text-muted-foreground">
-                Un agente autónomo especializado en comercio exterior que
-                interpreta la descripción técnica de tus productos y los vincula
-                automáticamente con su partida arancelaria exacta. Gracias a su
-                motor basado en Grafos Jurídicos, navega las regulaciones e
-                identifica restricciones o beneficios fiscales vigentes en
-                segundos, entregando un dictamen con trazabilidad legal
-                estricta.
+                Un agente autónomo de clasificación arancelaria que interpreta
+                la factura proforma, aplica las Reglas Generales Interpretativas
+                (RGI) sobre el texto de la partida y simula el landed cost según
+                el Incoterm pactado. Con precisión legal, entrega un dictamen
+                auditable con respaldo normativo exacto para cada fracción.
               </p>
             </motion.div>
           </div>

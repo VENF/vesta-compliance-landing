@@ -5,6 +5,7 @@ import { ProblemSection } from "@/src/sections/landing/components/problem-sectio
 import { SolutionSection } from "@/src/sections/landing/components/solution-section"
 import { HowItWorksSection } from "@/src/sections/landing/components/how-it-works-section"
 import { CtaSection } from "@/src/sections/landing/components/cta-section"
+import FAQ from "@/components/faq"
 import { FooterSection } from "@/src/sections/landing/components/footer-section"
 import { StripedPattern } from "@/components/striped-pattern"
 
@@ -13,7 +14,7 @@ export default function Page() {
     <>
       <LandingNav />
       <main className="flex flex-col items-center justify-center pt-16">
-        <div className="relative w-full px-4 md:w-[80%] md:px-10">
+        <div className="relative w-full border-x-2 border-dashed border-[#DAD9DE] px-4 md:w-[80%] md:px-10 dark:border-muted">
           <div className="pointer-events-none absolute inset-0 z-0 flex flex-col">
             <div className="flex-1" />
             <StripedPattern
@@ -21,13 +22,14 @@ export default function Page() {
               className="text-[#DBDBDB] dark:text-[#2E2E2E]"
             />
           </div>
-          <div className="relative border-red-500 bg-background">
+          <div className="relative bg-background">
             <LandingHero />
             <MetricsSection />
             <ProblemSection />
             <SolutionSection />
             <HowItWorksSection />
             <CtaSection />
+            <FAQ />
             <FooterSection />
           </div>
         </div>
@@ -35,3 +37,15 @@ export default function Page() {
     </>
   )
 }
+
+/*
+            <SolutionSection />
+            <HowItWorksSection />
+            <CtaSection />
+            <FaqSection />
+
+            <MetricsSection />
+            <ProblemSection />
+            <FooterSection />
+
+*/

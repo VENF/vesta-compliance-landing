@@ -5,24 +5,24 @@ import { motion } from "motion/react"
 
 const METRICS = [
   {
-    value: "Alta",
-    label: "Precisión",
-    description: "En clasificación arancelaria",
+    value: ">95%",
+    label: "Precisión Predictiva",
+    description: "Sugerida",
   },
   {
-    value: "40s",
-    label: "Por producto",
-    description: "Tiempo promedio de clasificación",
+    value: "<3 min",
+    label: "Por factura",
+    description: "Tiempo de procesamiento y dictamen",
   },
   {
-    value: "15K+",
-    label: "Clasificaciones",
-    description: "Procesadas y validadas",
+    value: "+10,000",
+    label: "Códigos",
+    description: "Arancelarios Mapeados",
   },
   {
-    value: "100%",
-    label: "Trazabilidad",
-    description: "De cada decisión con fundamento legal",
+    value: "11",
+    label: "Incoterms",
+    description: "Soportados y Simulados",
   },
 ]
 

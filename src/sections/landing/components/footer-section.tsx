@@ -24,8 +24,8 @@ export function FooterSection() {
           <div className="flex flex-col gap-4">
             <span className="text-heading-24 font-bold">VESTA</span>
             <p className="max-w-xs text-copy-14 text-muted-foreground">
-              Clasificación arancelaria inteligente para importadores que no
-              pueden permitirse errores.
+              Ingeniería legal y financiera para el comercio exterior.
+              Clasifica, simula y audita tu importación en segundos.
             </p>
             <div className="flex gap-3">
               <Link

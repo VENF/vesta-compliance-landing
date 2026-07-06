@@ -3,6 +3,7 @@
 import { motion } from "motion/react"
 import { Upload, Cpu, FileCheck } from "lucide-react"
 import { ClassificationResultSection } from "@/src/sections/classifier/components/classification-result"
+import { IncotermSimulationCard } from "./incoterm-simulation-card"
 import { MOCK_RESULT } from "./how-it-works-mock"
 import { StripedPattern } from "@/components/striped-pattern"
 
@@ -10,23 +11,23 @@ const STEPS = [
   {
     step: 1,
     icon: Upload,
-    title: "Sube tu archivo",
+    title: "Carga tu factura proforma",
     description:
-      "Carga tu factura proforma, archivo estructurado (.csv) con tu producto. El agente de IA procesa la información y extrae automáticamente los datos técnicos de cada mercancía.",
+      "Sube tu factura proforma o un archivo CSV con la descripción de tus mercancías. El agente extrae automáticamente los datos técnicos relevantes para la clasificación.",
   },
   {
     step: 2,
     icon: Cpu,
-    title: "Análisis y navegación agéntica",
+    title: "Clasifica con RGI y simula el landed cost",
     description:
-      "El agente analiza semánticamente cada producto, determina las opciones de clasificación más probables y las valida cronológicamente contra las reformas y decretos de exoneración vigentes en el Grafo Jurídico.",
+      "El agente aplica las Reglas Generales Interpretativas del Sistema Armonizado, cruza las especificaciones técnicas con el Grafo Jurídico de reformas vigentes y simula el costo de importación proyectado según el Incoterm de tu operación.",
   },
   {
     step: 3,
     icon: FileCheck,
-    title: "Dictamen auditable listo",
+    title: "Recibe tu dictamen de auditoría preventiva",
     description:
-      "Obtén un dictamen de probabilidades comparativo completo con el impacto fiscal proyectado, alertas de permisología y la trazabilidad exacta para respaldar tu carga ante aduanas.",
+      "Descarga un informe técnico con las partidas sugeridas de alta precisión, el impacto fiscal estimado, alertas de permisología y la trazabilidad normativa completa (Gacetas y Decretos) para respaldar la toma de decisiones de tu equipo antes de la declaración aduanera.",
   },
 ]
 
@@ -34,7 +35,7 @@ export function HowItWorksSection() {
   return (
     <section
       id="como-funciona"
-      className="relative overflow-hidden border-b-2 border-dashed border-[#DAD9DE] bg-muted/30 py-24 dark:border-muted"
+      className="relative overflow-hidden bg-muted/30 py-24"
     >
       <div className="mx-auto max-w-7xl px-4 md:px-10">
         <motion.div
@@ -45,12 +46,11 @@ export function HowItWorksSection() {
           className="mb-16 flex flex-col items-center text-center"
         >
           <h2 className="mt-4 max-w-xl text-3xl leading-none font-bold md:text-[48px]">
-            Auditoría arancelaria en tres pasos
+            De la factura proforma al dictamen técnico en minutos
           </h2>
           <p className="mt-4 max-w-2xl text-copy-16 text-muted-foreground">
-            Diseñado para integrarse a tu flujo de trabajo de forma simple,
-            transformando la complejidad legal en una hoja de ruta clara y
-            auditable en minutos.
+            Carga, clasifica, simula y audita. Sin hojas de cálculo, sin
+            depender de terceros, sin sorpresas en puerto.
           </p>
         </motion.div>
 
@@ -78,25 +78,34 @@ export function HowItWorksSection() {
           ))}
         </div>
         <div className="mt-16 flex justify-center">
-          <div className="relative flex max-w-3xl justify-center p-0 md:p-10">
-            <div className="pointer-events-none absolute inset-0 z-0 flex flex-col">
+          <div className="relative flex w-full flex-col gap-4 md:flex-row md:p-10">
+            <div className="pointer-events-none absolute inset-0 z-0 hidden flex-col md:flex">
               <div className="flex-1" />
               <StripedPattern
                 direction="right"
                 className="text-[#DBDBDB] dark:text-[#2E2E2E]"
               />
             </div>
-            <div className="max-w-2xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className=""
-              >
-                <ClassificationResultSection data={MOCK_RESULT} />
-              </motion.div>
-            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="max-w-2xl"
+            >
+              <ClassificationResultSection data={MOCK_RESULT} />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-4 w-full md:w-[350px]"
+            >
+              <IncotermSimulationCard />
+            </motion.div>
           </div>
         </div>
       </div>

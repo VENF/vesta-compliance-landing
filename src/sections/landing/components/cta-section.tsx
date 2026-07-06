@@ -6,13 +6,29 @@ import { Button } from "@/components/ui/button"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import SideRays from "@/components/SideRays"
 
 export function CtaSection() {
   const router = useRouter()
 
   return (
-    <section className="relative overflow-hidden border-b-2 border-dashed border-[#DAD9DE] bg-black bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1.png?updatedAt=1783017703262')] bg-contain bg-right bg-no-repeat py-24 text-white dark:border-muted">
-      <div className="mx-auto max-w-7xl px-4">
+    <section className="relative overflow-hidden bg-black py-16 text-white">
+      <div className="absolute inset-0 z-0">
+        <SideRays
+          speed={2.5}
+          rayColor1="#EAB308"
+          rayColor2="#96c8ff"
+          intensity={2}
+          spread={2}
+          origin="top-right"
+          tilt={0}
+          saturation={1.5}
+          blend={0.75}
+          falloff={1.6}
+          opacity={1}
+        />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-0">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -21,19 +37,19 @@ export function CtaSection() {
           className="flex flex-col items-center gap-8 p-12 text-center lg:p-20"
         >
           <h2 className="max-w-2xl text-[48px] leading-none font-bold">
-            Toma el control total de tu cumplimiento arancelario.
+            ¿Eres agencia aduanal o importador directo?
           </h2>
           <p className="max-w-xl text-copy-18 text-white">
-            No dejes tus márgenes de ganancia al azar. Comienza hoy a blindar tu
-            cadena de suministro contra multas y retrasos aduaneros de forma
-            automatizada.
+            VESTA se adapta a tu operación. Las agencias multiplican su
+            capacidad operativa sin contratar más clasificadores. Los
+            importadores proyectan el landed cost real antes de cada embarque.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <ShinyButton
               className="bg-black dark:bg-white"
               onClick={() => router.push("/classifier")}
             >
-              Probar demo Alfa
+              Probar demo
             </ShinyButton>
             <Button
               variant="outline"

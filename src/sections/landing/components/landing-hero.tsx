@@ -1,8 +1,10 @@
 "use client"
 
-import { motion } from "motion/react"
 import { useRouter } from "next/navigation"
 import { ShinyButton } from "@/components/ui/shiny-button"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 export function LandingHero() {
   const router = useRouter()
@@ -10,43 +12,43 @@ export function LandingHero() {
   return (
     <section
       id="home"
-      className="flex min-h-[90vh] flex-col items-center justify-center border-x-2 border-dashed border-[#DAD9DE] md:h-[93vh] dark:border-muted"
+      className="mt-[.5px] flex min-h-[90vh] flex-col items-center justify-center border-x-2 border-dashed border-[#DAD9DE] py-4 dark:border-muted"
     >
       <div className="flex flex-col items-center justify-center px-4">
         <div className="z-2 flex flex-col items-center justify-center gap-8 text-center">
           <p className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase md:text-xs">
-            CLASIFICACIÓN ARANCELARIA, AUDITORÍA DE RIESGO Y CÁLCULO FISCAL EN
-            TIEMPO REAL.
+            INGENIERÍA LEGAL Y FINANCIERA PARA COMERCIO EXTERIOR
           </p>
-          <h1 className="max-w-4xl text-[48px] leading-none font-bold md:text-[68px]">
-            Automatiza el cumplimiento de tu carga.
+          <h1 className="max-w-4xl text-[38px] leading-none font-bold md:text-[68px]">
+            Clasifica, simula y audita tu importación en minutos.
           </h1>
-          <p className="max-w-2xl text-copy-16 text-muted-foreground">
-            Clasifica mercancías al instante e identifica automáticamente
-            decretos o reformas vigentes para tus productos en segundos. Mitiga
-            riesgos regulatorios y proyecta tus costos en segundo plano para
-            proteger tu cadena de suministro.
+          <p className="max-w-2xl text-sm text-muted-foreground md:text-copy-16">
+            El motor de clasificación arancelaria más preciso del mercado. Carga
+            tu factura proforma y obtén en minutos la partida de mayor
+            probabilidad fiscal, el impacto impositivo proyectado y un dictamen
+            técnico auditable con respaldo y trazabilidad de la normativa
+            vigente.
           </p>
-          <div className="">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <ShinyButton
               className="bg-black dark:bg-white"
               onClick={() => router.push("/classifier")}
             >
               Probar demo
             </ShinyButton>
+            <Button
+              variant="outline"
+              className="text-black dark:text-white"
+              size="lg"
+              asChild
+            >
+              <Link href="/waitlist">
+                Lista de espera
+                <ArrowRight className="size-4" />
+              </Link>
+            </Button>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: [0, -8, 0] }}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-            y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-          }}
-          className="relative z-1 mr-4 aspect-[600/390] w-full max-w-[400px] bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1-light.png')] bg-contain bg-center bg-no-repeat dark:mr-8 dark:bg-[url('https://ik.imagekit.io/02idw6idur/vesta-1%20(1).png')]"
-        />
       </div>
     </section>
   )
