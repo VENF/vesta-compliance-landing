@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useEffect } from "react"
 import { Play, XIcon } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { cn } from "@/lib/utils"
@@ -97,6 +97,12 @@ export function HeroVideoDialog({
     video.currentTime = startTime
   }, [startTime])
 
+  useEffect(() => {
+    if (isVideoOpen) {
+      videoRef.current?.play().catch(() => {})
+    }
+  }, [isVideoOpen])
+
   return (
     <div className={cn("relative", className)}>
       <button
@@ -174,6 +180,8 @@ export function HeroVideoDialog({
                   ref={videoRef}
                   src={videoSrc}
                   controls
+                  playsInline
+                  autoPlay
                   className="mt-0 size-full rounded-2xl"
                   onTimeUpdate={handleTimeUpdate}
                   onLoadedMetadata={handleLoadedMetadata}
