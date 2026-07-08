@@ -49,7 +49,7 @@ export function LandingHero() {
 
           <HeroVideoDialog
             animationStyle="from-center"
-            videoSrc="https://ik.imagekit.io/02idw6idur/Grabaci%C3%B3n%20de%20pantalla%20desde%202026-07-08%2014-22-17.mp4?updatedAt=1783535069839"
+            videoSrc="https://qd5ur6ghpfgaklu4.public.blob.vercel-storage.com/video_cortado.mp4"
             thumbnailSrc="https://ik.imagekit.io/02idw6idur/Captura%20desde%202026-07-08%2014-28-38.png"
             startTime={0}
             endTime={85}
