@@ -1,7 +1,20 @@
+import type { Metadata } from "next"
+import { LandingNav } from "@/src/sections/landing/components/landing-nav"
+import { WaitlistForm } from "@/src/sections/landing/components/wailist-form"
+
+export const metadata: Metadata = {
+  title: "Lista de Espera",
+  description:
+    "Sé de los primeros en acceder a Vesta Compliance. Únete a la lista de espera para acceso anticipado.",
+}
+
 export default function WaitlistPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <h1 className="text-heading-32">Lista de espera</h1>
-    </div>
+    <>
+      <LandingNav />
+      <main className="pt-16">
+        <WaitlistForm />
+      </main>
+    </>
   )
 }

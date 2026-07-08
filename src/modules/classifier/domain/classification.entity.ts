@@ -1,6 +1,13 @@
 import { z } from "zod"
 
-export const StepId = z.enum(["variables", "scanning", "analyzing", "legal"])
+export const StepId = z.enum([
+  "processing",
+  "technical_sheet",
+  "scanning",
+  "analyzing",
+  "landed_cost",
+  "legal",
+])
 export type StepId = z.infer<typeof StepId>
 
 export const StepStatus = z.enum(["pending", "running", "ok"])

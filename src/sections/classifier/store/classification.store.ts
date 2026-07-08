@@ -6,15 +6,26 @@ import type {
 } from "@/src/modules/classifier/domain/classification.entity"
 
 export interface StepState {
-  stepId: "variables" | "scanning" | "analyzing" | "legal"
+  stepId:
+    | "processing"
+    | "technical_sheet"
+    | "scanning"
+    | "analyzing"
+    | "landed_cost"
+    | "legal"
   label: string
   status: "pending" | "running" | "ok"
 }
 
 const INITIAL_STEPS: StepState[] = [
   {
-    stepId: "variables",
-    label: "Identificando variables críticas del producto",
+    stepId: "processing",
+    label: "Procesando documento",
+    status: "pending",
+  },
+  {
+    stepId: "technical_sheet",
+    label: "Generando ficha técnica",
     status: "pending",
   },
   {
@@ -25,6 +36,11 @@ const INITIAL_STEPS: StepState[] = [
   {
     stepId: "analyzing",
     label: "Analizando subpartidas competidoras y aplicando descarte legal",
+    status: "pending",
+  },
+  {
+    stepId: "landed_cost",
+    label: "Simulando landed cost según Incoterm",
     status: "pending",
   },
   {

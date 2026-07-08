@@ -3,9 +3,9 @@ import { getCollection } from "@/src/lib/db"
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, phone, company, description } = body
+    const { email, company, phone, rol, pain, volume } = body
 
-    if (!name || !email || !phone || !description) {
+    if (!email || !company || !phone || !rol || !pain) {
       return Response.json(
         { error: "Faltan campos requeridos" },
         { status: 400 }
@@ -15,11 +15,12 @@ export async function POST(request: Request) {
     const collection = await getCollection("waitlist")
 
     await collection.insertOne({
-      name,
       email,
+      company,
       phone,
-      company: company || "",
-      description,
+      rol,
+      pain,
+      volume: volume || "",
       createdAt: new Date(),
     })
 

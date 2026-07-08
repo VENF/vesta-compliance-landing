@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog"
 import { ArrowRight } from "lucide-react"
 
 export function LandingHero() {
@@ -40,14 +40,21 @@ export function LandingHero() {
               variant="outline"
               className="text-black dark:text-white"
               size="lg"
-              asChild
+              onClick={() => router.push("/waitlist")}
             >
-              <Link href="/waitlist">
-                Lista de espera
-                <ArrowRight className="size-4" />
-              </Link>
+              Lista de espera
+              <ArrowRight className="size-4" />
             </Button>
           </div>
+
+          <HeroVideoDialog
+            animationStyle="from-center"
+            videoSrc="https://ik.imagekit.io/02idw6idur/Grabaci%C3%B3n%20de%20pantalla%20desde%202026-07-08%2014-22-17.mp4?updatedAt=1783535069839"
+            thumbnailSrc="https://ik.imagekit.io/02idw6idur/Captura%20desde%202026-07-08%2014-28-38.png"
+            startTime={0}
+            endTime={85}
+            className="w-full max-w-4xl"
+          />
         </div>
       </div>
     </section>

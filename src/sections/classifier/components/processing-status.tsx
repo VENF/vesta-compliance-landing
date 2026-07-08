@@ -108,13 +108,13 @@ export function ProcessingStatus({
 
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="text-xs text-muted-foreground">
-              Carga un CSV con los detalles de tu producto
+              Carga tu factura proforma o un CSV con los detalles de tu producto
             </p>
             <div className="flex items-center gap-3 text-xs text-muted-foreground/60">
               <span>
                 Formatos permitidos:{" "}
                 <span className="font-medium text-muted-foreground/80">
-                  .csv
+                  .csv | .pdf
                 </span>
               </span>
               <span className="text-muted-foreground/20">|</span>

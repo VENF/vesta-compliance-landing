@@ -6,6 +6,7 @@ import { useClassificationSse } from "../hooks/use-classification-sse"
 import { useClassificationStore } from "../store/classification.store"
 import { ProcessingStatus } from "../components/processing-status"
 import { ClassificationResultSection } from "../components/classification-result"
+import { IncotermSimulationCard } from "@/src/sections/landing/components/incoterm-simulation-card"
 import { ProcessingHeader } from "../components/processing-header"
 import { Footer } from "../components/Footer"
 import { StripedPattern } from "@/components/striped-pattern"
@@ -74,9 +75,10 @@ export function ClassifierProgressView({ id }: ClassifierProgressViewProps) {
                     <motion.div
                       key="result"
                       {...blurReveal}
-                      className="flex justify-center"
+                      className="flex w-full flex-col items-center gap-6"
                     >
                       <ClassificationResultSection data={result} />
+                      <IncotermSimulationCard />
                     </motion.div>
                   ) : pageState === "error" ? (
                     <motion.div key="error" {...blurReveal}>

@@ -18,7 +18,22 @@ import {
 
 const dashClass = "border-t border-dashed border-[#DAD9DE]/50 dark:border-muted"
 
-const INCOTERM_DATA = {
+export interface IncotermData {
+  code: string
+  name: string
+  translation: string
+  rule: string
+  metrics: {
+    fob: number
+    freight: number
+    insurance: number
+    totalAdjustment: number
+    cif: number
+  }
+  note: string
+}
+
+const DEFAULT_INCOTERM_DATA: IncotermData = {
   code: "FOB",
   name: "FREE ON BOARD",
   translation: "Libre a Bordo",
@@ -35,12 +50,14 @@ const INCOTERM_DATA = {
 
 interface IncotermSimulationCardProps {
   forceTooltip?: boolean
+  data?: IncotermData
 }
 
 export function IncotermSimulationCard({
   forceTooltip = false,
+  data = DEFAULT_INCOTERM_DATA,
 }: IncotermSimulationCardProps) {
-  const { metrics } = INCOTERM_DATA
+  const { metrics } = data
   const [adjustmentsOpen, setAdjustmentsOpen] = useState(true)
   const [tooltipOpen, setTooltipOpen] = useState(forceTooltip)
 
@@ -66,7 +83,7 @@ export function IncotermSimulationCard({
                 </button>
               </TooltipTrigger>
               <TooltipContent side="right" className="max-w-xs">
-                {INCOTERM_DATA.note}
+                {data.note}
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -77,9 +94,9 @@ export function IncotermSimulationCard({
         <div className="px-5 py-3">
           <div className="flex items-center gap-3">
             <Badge variant="outline" className="text-xs font-bold">
-              {INCOTERM_DATA.code}
+              {data.code}
             </Badge>
-            <span className="text-sm font-medium">{INCOTERM_DATA.name}</span>
+            <span className="text-sm font-medium">{data.name}</span>
           </div>
         </div>
 
@@ -88,7 +105,7 @@ export function IncotermSimulationCard({
         <div className="px-5 py-3">
           <p className="text-xs text-muted-foreground">
             <span className="font-medium text-foreground">Regla ICC:</span>{" "}
-            {INCOTERM_DATA.rule}
+            {data.rule}
           </p>
         </div>
 

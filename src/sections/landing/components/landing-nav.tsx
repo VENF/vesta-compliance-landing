@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const NAV_ITEMS = [
-  { label: "Home", href: "#home" },
-  { label: "Problema", href: "#problema" },
-  { label: "Solución", href: "#solucion" },
-  { label: "Cómo funciona", href: "#como-funciona" },
+  { label: "Home", href: "/#home" },
+  { label: "Problema", href: "/#problema" },
+  { label: "Solución", href: "/#solucion" },
+  { label: "Cómo funciona", href: "/#como-funciona" },
 ]
 
 export function LandingNav() {
@@ -18,7 +18,7 @@ export function LandingNav() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/70 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-        <Link href="#home" className="text-heading-24 font-bold">
+        <Link href="/" className="text-heading-24 font-bold">
           VESTA
         </Link>
 

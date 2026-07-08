@@ -7,23 +7,33 @@ import type { ProgressEventData } from "@/src/modules/classifier/domain/classifi
 
 const BASE_STEPS: StepState[] = [
   {
-    stepId: "variables",
-    label: "Identificando variables críticas del producto",
+    stepId: "processing",
+    label: "Procesando documento",
+    status: "pending",
+  },
+  {
+    stepId: "technical_sheet",
+    label: "Generando ficha técnica",
     status: "pending",
   },
   {
     stepId: "scanning",
-    label: "Escaneando el Arancel Nacional SAC",
+    label: "Escaneando Sección XVI y Capítulo 85 del Arancel NCM",
     status: "pending",
   },
   {
     stepId: "analyzing",
-    label: "Relacionando producto con partida arancelaria",
+    label: "Analizando subpartidas competidoras y aplicando descarte legal",
+    status: "pending",
+  },
+  {
+    stepId: "landed_cost",
+    label: "Simulando landed cost según Incoterm",
     status: "pending",
   },
   {
     stepId: "legal",
-    label: "Redactando fundamentación jurídica RGI",
+    label: "Redactando fundamentación jurídica bajo RGI 1 y RGI 6",
     status: "pending",
   },
 ]
