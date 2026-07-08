@@ -9,11 +9,12 @@ export default async function AdminDashboard() {
 
   const data = entries.map((entry) => ({
     _id: entry._id.toString(),
-    name: entry.name,
     email: entry.email,
-    phone: entry.phone,
     company: entry.company || "",
-    description: entry.description,
+    phone: entry.phone,
+    rol: entry.rol,
+    pain: entry.pain,
+    volume: entry.volume || "",
     createdAt: entry.createdAt?.toISOString() || "",
   }))
 

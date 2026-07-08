@@ -6,12 +6,33 @@ import { Input } from "@/components/ui/input"
 
 type Entry = {
   _id: string
-  name: string
   email: string
-  phone: string
   company: string
-  description: string
+  phone: string
+  rol: string
+  pain: string
+  volume: string
   createdAt: string
+}
+
+const ROL_LABELS: Record<string, string> = {
+  importador: "Importador / Empresa Comercial",
+  agencia: "Agencia de Aduanas / Clasificador",
+  personal: "Importador Personal / Emprendedor",
+  otro: "Otro",
+}
+
+const PAIN_LABELS: Record<string, string> = {
+  clasificacion: "Clasificación arancelaria",
+  "landed-cost": "Landed Cost / Incoterms",
+  permisos: "Permisos y multas",
+  todos: "Todos los anteriores",
+}
+
+const VOLUME_LABELS: Record<string, string> = {
+  bajo: "Menos de 3 emb/mes",
+  medio: "3–10 emb/mes",
+  alto: "Más de 10 emb/mes",
 }
 
 export function AdminTable({ data }: { data: Entry[] }) {
@@ -19,7 +40,6 @@ export function AdminTable({ data }: { data: Entry[] }) {
 
   const filtered = data.filter(
     (entry) =>
-      entry.name.toLowerCase().includes(search.toLowerCase()) ||
       entry.email.toLowerCase().includes(search.toLowerCase()) ||
       entry.company.toLowerCase().includes(search.toLowerCase()) ||
       entry.phone.includes(search)
@@ -42,18 +62,19 @@ export function AdminTable({ data }: { data: Entry[] }) {
           <thead>
             <tr className="border-b border-border/40 bg-muted/50">
               <th className="px-4 py-3 font-medium">Fecha</th>
-              <th className="px-4 py-3 font-medium">Nombre</th>
               <th className="px-4 py-3 font-medium">Email</th>
-              <th className="px-4 py-3 font-medium">Teléfono</th>
               <th className="px-4 py-3 font-medium">Empresa</th>
-              <th className="px-4 py-3 font-medium">Descripción</th>
+              <th className="px-4 py-3 font-medium">Teléfono</th>
+              <th className="px-4 py-3 font-medium">Rol</th>
+              <th className="px-4 py-3 font-medium">Dolor</th>
+              <th className="px-4 py-3 font-medium">Volumen</th>
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
               <tr>
                 <td
-                  colSpan={6}
+                  colSpan={7}
                   className="px-4 py-12 text-center text-muted-foreground"
                 >
                   No hay registros
@@ -74,18 +95,27 @@ export function AdminTable({ data }: { data: Entry[] }) {
                       minute: "2-digit",
                     })}
                   </td>
-                  <td className="px-4 py-3 font-medium whitespace-nowrap">
-                    {entry.name}
-                  </td>
                   <td className="px-4 py-3 whitespace-nowrap">{entry.email}</td>
-                  <td className="px-4 py-3 whitespace-nowrap">{entry.phone}</td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     {entry.company || (
                       <span className="text-muted-foreground">—</span>
                     )}
                   </td>
+                  <td className="px-4 py-3 whitespace-nowrap">{entry.phone}</td>
                   <td className="max-w-xs truncate px-4 py-3">
-                    {entry.description}
+                    {ROL_LABELS[entry.rol] || entry.rol || (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="max-w-xs truncate px-4 py-3">
+                    {PAIN_LABELS[entry.pain] || entry.pain || (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap">
+                    {VOLUME_LABELS[entry.volume] || entry.volume || (
+                      <span className="text-muted-foreground">—</span>
+                    )}
                   </td>
                 </tr>
               ))
