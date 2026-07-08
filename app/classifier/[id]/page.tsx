@@ -1,3 +1,4 @@
+import { AccessCodeLock } from "@/components/access-code-lock"
 import { ClassifierProgressView } from "@/src/sections/classifier/view/classifier-progress-view"
 
 interface PageProps {
@@ -6,5 +7,9 @@ interface PageProps {
 
 export default async function ClassifierProgressPage({ params }: PageProps) {
   const { id } = await params
-  return <ClassifierProgressView id={id} />
+  return (
+    <AccessCodeLock>
+      <ClassifierProgressView id={id} />
+    </AccessCodeLock>
+  )
 }

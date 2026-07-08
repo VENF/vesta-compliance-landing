@@ -1,0 +1,30 @@
+import { MongoClient } from "mongodb"
+
+const uri = process.env.DATABASE_CONNECTION_URI
+
+let client: MongoClient
+let clientPromise: Promise<MongoClient>
+
+if (!uri) {
+  throw new Error("DATABASE_CONNECTION_URI is not defined")
+}
+
+if (process.env.NODE_ENV === "development") {
+  const globalWithMongo = global as typeof globalThis & {
+    _mongoClientPromise?: Promise<MongoClient>
+  }
+
+  if (!globalWithMongo._mongoClientPromise) {
+    client = new MongoClient(uri)
+    globalWithMongo._mongoClientPromise = client.connect()
+  }
+  clientPromise = globalWithMongo._mongoClientPromise
+} else {
+  client = new MongoClient(uri)
+  clientPromise = client.connect()
+}
+
+export async function getCollection(name: string) {
+  const client = await clientPromise
+  return client.db().collection(name)
+}

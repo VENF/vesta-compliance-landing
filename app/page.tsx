@@ -8,6 +8,7 @@ import { CtaSection } from "@/src/sections/landing/components/cta-section"
 import FAQ from "@/components/faq"
 import { FooterSection } from "@/src/sections/landing/components/footer-section"
 import { StripedPattern } from "@/components/striped-pattern"
+import { WaitlistForm } from "@/src/sections/landing/components/wailist-form"
 
 export default function Page() {
   return (
@@ -29,6 +30,7 @@ export default function Page() {
             <SolutionSection />
             <HowItWorksSection />
             <CtaSection />
+            <WaitlistForm />
             <FAQ />
             <FooterSection />
           </div>
